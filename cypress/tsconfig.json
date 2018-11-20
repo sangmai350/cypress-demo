@@ -1,0 +1,16 @@
+{
+    "extends": "../node_modules/ts-config/tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "../node_modules",
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+        "types": [
+            "cypress"
+        ],
+    },
+    "include": [
+        "**/*.ts"
+    ]
+}
