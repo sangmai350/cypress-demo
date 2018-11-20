@@ -1,3 +1,5 @@
+import { Constant } from './constanst'
+const timeout: number = Constant.TIMEOUT;
 export class BaseElement {
     protected xPathToCss(xpath: string) {
         return xpath
@@ -11,22 +13,18 @@ export class BaseElement {
 
     protected findElement(locator: string): Cypress.Chainable<JQuery> {
         let control: any
-        try {
-            if (locator.startsWith('css=')) {
-                locator = locator.substring(4);
-                control = cy.get(locator);
-            } else if (locator.startsWith('xpath=')) {
-                locator = locator.substring(5);
-                let cssControl = this.xPathToCss(locator);
-                control = cy.get(cssControl);
-            } else if (locator.startsWith('cssText=')) {
-                locator = locator.substring(8);
-                const text = locator.split(' Text=')[1];
-                locator = locator.split(' Text=')[0];
-                control = cy.get(locator).contains(text);
-            }
-        } catch (e) {
-            cy.log(e);
+        if (locator.startsWith('css=')) {
+            locator = locator.substring(4);
+            control = cy.get(locator, { timeout: timeout });
+        } else if (locator.startsWith('xpath=')) {
+            locator = locator.substring(6);
+            let cssControl = this.xPathToCss(locator);
+            control = cy.get(cssControl, { timeout: timeout });
+        } else if (locator.startsWith('cssText=')) {
+            locator = locator.substring(8);
+            const text = locator.split(' Text=')[1];
+            locator = locator.split(' Text=')[0];
+            control = cy.get(locator, { timeout: timeout }).contains(text);
         }
         return control;
     }

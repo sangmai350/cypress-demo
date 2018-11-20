@@ -1,85 +1,49 @@
 import { BaseElement } from "./baseElements";
 export class BasePage extends BaseElement {
 
-    async type(locator: string, value: string) {
-        try {
-            const element = this.findElement(locator);
-            await element.clear().type(value);
-        } catch (e) {
-            cy.log(e);
+    type(locator: string, value: string) {
+        const element = this.findElement(locator);
+        element.clear().type(value);
+    }
+    click(locator: string) {
+        const element = this.findElement(locator);
+        element.click();
+    }
+    doubleClick(locator: string) {
+        const element = this.findElement(locator);
+        element.dblclick()
+    }
+    checkToCheckbox(locator: string, isChecked: boolean) {
+        const element = this.findElement(locator);
+        if (isChecked) {
+            element.not('[disabled]').check().should('be.checked');
+        } else {
+            element.not('[disabled]').uncheck().should('not.be.checked');
         }
     }
-    async click(locator: string) {
-        try {
-            const element = this.findElement(locator);
-            await element.click();
-        } catch (e) {
-            cy.log(e);
+    checkToCheckboxByValues(locator: string, isChecked: boolean, ...values: string[]) {
+        const element = this.findElement(locator);
+        if (isChecked) {
+            element.not('[disabled]').check(values).should('be.checked');
+        } else {
+            element.not('[disabled]').uncheck(values).should('not.be.checked');
         }
     }
-    async doubleClick(locator: string) {
-        try {
-            const element = this.findElement(locator);
-            await element.dblclick()
-        } catch (e) {
-            cy.log(e);
-        }
+    selectTheOption(locator: string, value: string) {
+        const element = this.findElement(locator);
+        element.not('[disabled]').select(value);
     }
-    async checkToCheckbox(locator: string, isChecked: boolean) {
-        try {
-            const element = this.findElement(locator);
-            if (isChecked) {
-                await element.not('[disabled]').check().should('be.checked');
-            } else {
-                await element.not('[disabled]').uncheck().should('not.be.checked');
-            }
-        } catch (e) {
-            cy.log(e);
-        }
+    selectMultiOptions(locator: string, ...values: string[]) {
+        const element = this.findElement(locator);
+        element.not('[disabled]').select(values);
     }
-    async checkToCheckboxByValues(locator: string, isChecked: boolean, ...values: string[]) {
-        try {
-            const element = this.findElement(locator);
-            if (isChecked) {
-                await element.not('[disabled]').check(values).should('be.checked');
-            } else {
-                await element.not('[disabled]').uncheck(values).should('not.be.checked');
-            }
-        } catch (e) {
-            cy.log(e);
-        }
+    checkTheElementHasValue(locator: string, value: string) {
+        const element = this.findElement(locator);
+        element.should('have.value', value);
     }
-    async selectTheOption(locator: string, value: string) {
-        try {
-            const element = this.findElement(locator);
-            await element.not('[disabled]').select(value);
-        } catch (e) {
-            cy.log(e);
-        }
-    }
-    async selectMultiOptions(locator: string, ...values: string[]) {
-        try {
-            const element = this.findElement(locator);
-            await element.not('[disabled]').select(values);
-        } catch (e) {
-            cy.log(e);
-        }
-    }
-    async checkTheElementHasValue(locator: string, value: string) {
-        try {
-            const element = this.findElement(locator);
-            await element.should('have.value', value);
-        } catch (e) {
-            cy.log(e);
-        }
-    }
-    async checkTheElementStyle(locator: string, style: string) {
-        try {
-            const element = this.findElement(locator);
-            await element.should('have.attr', 'style', style);
-        } catch (e) {
-            cy.log(e);
-        }
+    checkTheElementStyle(locator: string, style: string) {
+        const element = this.findElement(locator);
+        element.should('have.attr', 'style', style);
     }
     gotoURL(url: string) {
         cy.visit(url);
