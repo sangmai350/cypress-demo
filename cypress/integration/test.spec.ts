@@ -1,10 +1,10 @@
-import { LoginPage } from '../support/pages/actions/loginPage';
+import { LoginPage } from '../support/pages/actions/login.po';
 
 const loginPage = new LoginPage();
 const username = "provider@coachcare.com";
 const password = "123abc";
-describe("Demo Page Object", () => {
-  context("Demo", () => {
+describe("Login Test With Cypress", () => {
+  context("Login with valid username and password", () => {
     beforeEach(() => {
     });
 
@@ -13,6 +13,9 @@ describe("Demo Page Object", () => {
       loginPage.inputUserName(username);
       loginPage.inputPassword(password);
       loginPage.clickLoginButton();
+      loginPage.verifyTitle('Provider Dashboard');
+      loginPage.waitToLoading();
+      loginPage.verifyTextIsDisplayed('Hello Provider T.');
     });
   });
 });

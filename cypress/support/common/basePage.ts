@@ -29,9 +29,9 @@ export class BasePage extends BaseElement {
         try {
             const element = this.findElement(locator);
             if (isChecked) {
-                await element.check();
+                await element.not('[disabled]').check().should('be.checked');
             } else {
-                await element.uncheck();
+                await element.not('[disabled]').uncheck().should('not.be.checked');
             }
         } catch (e) {
             cy.log(e);
@@ -41,9 +41,9 @@ export class BasePage extends BaseElement {
         try {
             const element = this.findElement(locator);
             if (isChecked) {
-                await element.check(values);
+                await element.not('[disabled]').check(values).should('be.checked');
             } else {
-                await element.uncheck(values);
+                await element.not('[disabled]').uncheck(values).should('not.be.checked');
             }
         } catch (e) {
             cy.log(e);
@@ -52,7 +52,7 @@ export class BasePage extends BaseElement {
     async selectTheOption(locator: string, value: string) {
         try {
             const element = this.findElement(locator);
-            await element.select(value);
+            await element.not('[disabled]').select(value);
         } catch (e) {
             cy.log(e);
         }
@@ -60,7 +60,23 @@ export class BasePage extends BaseElement {
     async selectMultiOptions(locator: string, ...values: string[]) {
         try {
             const element = this.findElement(locator);
-            await element.select(values);
+            await element.not('[disabled]').select(values);
+        } catch (e) {
+            cy.log(e);
+        }
+    }
+    async checkTheElementHasValue(locator: string, value: string) {
+        try {
+            const element = this.findElement(locator);
+            await element.should('have.value', value);
+        } catch (e) {
+            cy.log(e);
+        }
+    }
+    async checkTheElementStyle(locator: string, style: string) {
+        try {
+            const element = this.findElement(locator);
+            await element.should('have.attr', 'style', style);
         } catch (e) {
             cy.log(e);
         }
