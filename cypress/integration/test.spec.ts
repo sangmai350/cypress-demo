@@ -6,7 +6,7 @@ const password = Constant.PROIVER_PASS;
 describe("Login Test With Cypress", () => {
   context("Login with valid username and password", () => {
     beforeEach(() => {
-      cy.viewport('iphone-6');
+      // cy.viewport('iphone-6');
     });
 
     it("Login Page", () => {

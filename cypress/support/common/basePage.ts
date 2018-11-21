@@ -3,11 +3,11 @@ export class BasePage extends BaseElement {
 
     type(locator: string, value: string) {
         const element = this.findElement(locator);
-        element.clear().type(value);
+        element.should('be.visible').clear().type(value);
     }
     click(locator: string) {
         const element = this.findElement(locator);
-        element.click();
+        element.should('be.visible').click();
     }
     doubleClick(locator: string) {
         const element = this.findElement(locator);
