@@ -41,6 +41,10 @@ export class BasePage extends BaseElement {
         const element = this.findElement(locator);
         element.should('have.value', value);
     }
+    checkTheElementHasText(locator: string, text: string) {
+        const element = this.findElement(locator);
+        element.should('have.text', text);
+    }
     checkTheElementStyle(locator: string, style: string) {
         const element = this.findElement(locator);
         element.should('have.attr', 'style', style);
@@ -54,5 +58,11 @@ export class BasePage extends BaseElement {
     }
     wait(s: number) {
         cy.wait(s * 1000);
+    }
+    getText(locator: string) {
+        // const element = this.findElement(locator);
+        cy.get(locator).invoke('text').then((text => {
+            // expect(text.trim()).to.eq('66.67%')
+        }));
     }
 }

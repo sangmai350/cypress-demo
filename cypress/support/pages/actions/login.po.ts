@@ -27,7 +27,7 @@ export class LoginPage extends BasePage {
     }
     verifyTextIsDisplayed(text: string) {
         cy.log(`Verify Profile is displayed ${text}`);
-        this.checkTheElementHasValue(LoginPageUI.PROFILE_BUTTON, text);
+        this.checkTheElementHasText(LoginPageUI.PROFILE_BUTTON, text);
     }
     waitToLoading() {
         cy.location('pathname', { timeout: 60000 }).should('include', '/provider');

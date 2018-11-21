@@ -1,11 +1,12 @@
 import { LoginPage } from '../support/pages/actions/login.po';
-
+import { Constant } from '../support/common/constanst';
 const loginPage = new LoginPage();
-const username = "provider@coachcare.com";
-const password = "123abc";
+const username = Constant.PROVIDER_EMAIL;
+const password = Constant.PROIVER_PASS;
 describe("Login Test With Cypress", () => {
   context("Login with valid username and password", () => {
     beforeEach(() => {
+      cy.viewport('iphone-6');
     });
 
     it("Login Page", () => {

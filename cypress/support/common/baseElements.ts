@@ -1,16 +1,8 @@
 import { Constant } from './constanst'
+import { xPathToCss } from './xpathToCSS'
+
 const timeout: number = Constant.TIMEOUT;
 export class BaseElement {
-    protected xPathToCss(xpath: string) {
-        return xpath
-            .replace(/\[(\d+?)\]/g, function (s, m1) { return '[' + (m1 - 1) + ']'; })
-            .replace(/\/{2}/g, '')
-            .replace(/\/+/g, ' > ')
-            .replace(/@/g, '')
-            .replace(/\[(\d+)\]/g, ':eq($1)')
-            .replace(/^\s+/, '');
-    }
-
     protected findElement(locator: string): Cypress.Chainable<JQuery> {
         let control: any
         if (locator.startsWith('css=')) {
@@ -18,7 +10,7 @@ export class BaseElement {
             control = cy.get(locator, { timeout: timeout });
         } else if (locator.startsWith('xpath=')) {
             locator = locator.substring(6);
-            let cssControl = this.xPathToCss(locator);
+            let cssControl = new xPathToCss().xPathToCss(locator);
             control = cy.get(cssControl, { timeout: timeout });
         } else if (locator.startsWith('cssText=')) {
             locator = locator.substring(8);
