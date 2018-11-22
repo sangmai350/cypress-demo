@@ -1,5 +1,8 @@
 import { LoginPageUI } from "../interfaces/login.interface";
 import { BasePage } from "../../common/basePage";
+import { from } from 'rxjs';
+import { resolve, reject } from "bluebird";
+
 export class LoginPage extends BasePage {
     constructor() {
         super();
@@ -25,11 +28,20 @@ export class LoginPage extends BasePage {
         cy.log(`Verify Title is ${title}`);
         cy.title().should('include', title);
     }
-    verifyTextIsDisplayed(text: string) {
+    verifyProfileIsDisplayed(text: string) {
         cy.log(`Verify Profile is displayed ${text}`);
-        this.checkTheElementHasText(LoginPageUI.PROFILE_BUTTON, text);
-    }
-    waitToLoading() {
-        cy.location('pathname', { timeout: 60000 }).should('include', '/provider');
+        this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
+        // let text1 = ''
+        // this.getText(LoginPageUI.PROFILE_BUTTON).then(innerText => {
+        //     text1 = innerText.text();
+        //     cy.log(innerText.text());
+        // });
+        var observable = from(new Promise((resolve, reject) => {
+            resolve('Hello from a Promise!');
+        }
+        ));
+        observable.subscribe(resolve => {
+            console.log(resolve);
+        })
     }
 }

@@ -15,8 +15,7 @@ describe("Login Test With Cypress", () => {
       loginPage.inputPassword(password);
       loginPage.clickLoginButton();
       loginPage.verifyTitle('Provider Dashboard');
-      loginPage.waitToLoading();
-      loginPage.verifyTextIsDisplayed('Hello Provider T.');
+      loginPage.verifyProfileIsDisplayed('Hello Provider T.');
     });
   });
 });

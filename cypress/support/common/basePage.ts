@@ -37,17 +37,24 @@ export class BasePage extends BaseElement {
         const element = this.findElement(locator);
         element.not('[disabled]').select(values);
     }
-    checkTheElementHasValue(locator: string, value: string) {
+    shouldHasValue(locator: string, value: string, negative: boolean = true) {
+        const should = negative ? "have" : "not.have";
         const element = this.findElement(locator);
-        element.should('have.value', value);
+        element.should(`${should}.value`, value);
     }
-    checkTheElementHasText(locator: string, text: string) {
+    shouldHasText(locator: string, text: string, negative: boolean = true) {
+        const should = negative ? "have" : "not.have";
         const element = this.findElement(locator);
-        element.should('have.text', text);
+        element.should(`${should}.text`, text);
     }
-    checkTheElementStyle(locator: string, style: string) {
+    shouldHasStyle(locator: string, style: string) {
         const element = this.findElement(locator);
         element.should('have.attr', 'style', style);
+    }
+    shouldVisible(locator: string, negative: boolean = true) {
+        const should = negative ? "be" : "not.be";
+        const element = this.findElement(locator);
+        element.should(`${should}.visible`);
     }
     gotoURL(url: string) {
         cy.visit(url);
@@ -60,9 +67,8 @@ export class BasePage extends BaseElement {
         cy.wait(s * 1000);
     }
     getText(locator: string) {
-        // const element = this.findElement(locator);
-        cy.get(locator).invoke('text').then((text => {
-            // expect(text.trim()).to.eq('66.67%')
-        }));
+        return this.findElement(locator).should(($elemnt) => {
+            return $elemnt.text();
+        });
     }
 }
