@@ -68,7 +68,7 @@ export class BasePage extends BaseElement {
     }
     getText(locator: string) {
         return this.findElement(locator).should(($elemnt) => {
-            return $elemnt.text();
+            return $elemnt;
         });
     }
 }

@@ -1,5 +1,5 @@
 import { Constant } from './constanst';
-import { xPathToCss } from './xpathToCSS';
+import { XPathToCss } from './xpathToCSS';
 
 const timeout: number = Constant.TIMEOUT;
 export class BaseElement {
@@ -10,7 +10,7 @@ export class BaseElement {
             control = cy.get(locator, { timeout: timeout });
         } else if (locator.startsWith('xpath=')) {
             locator = locator.substring(6);
-            const cssControl = new xPathToCss().xPathToCss(locator);
+            const cssControl = new XPathToCss().xPathToCss(locator);
             control = cy.get(cssControl, { timeout: timeout });
         } else if (locator.startsWith('cssText=')) {
             locator = locator.substring(8);

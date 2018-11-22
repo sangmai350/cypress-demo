@@ -1,6 +1,5 @@
 import { LoginPageUI } from '../interfaces/login.interface';
 import { BasePage } from '../../common/basePage';
-import { from } from 'rxjs';
 export class LoginPage extends BasePage {
     constructor() {
         super();
@@ -27,17 +26,10 @@ export class LoginPage extends BasePage {
         cy.title().should('include', title);
     }
     verifyProfileIsDisplayed(text: string) {
-        // cy.log(`Verify Profile is displayed ${text}`);
-        // this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
-        // this.getText(LoginPageUI.PROFILE_BUTTON).then(innerText => {
-        //     cy.log(innerText.text());
-        // });
-        const observable = from(new Promise((resolve) => {
-            Promise.resolve('Hello from a Promise!');
-        }
-        ));
-        observable.subscribe(x => {
-            console.log(x);
+        cy.log(`Verify Profile is displayed ${text}`);
+        this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
+        this.getText(LoginPageUI.PROFILE_BUTTON).then(_text => {
+            cy.log(_text.get(0).innerText);
         });
     }
 }

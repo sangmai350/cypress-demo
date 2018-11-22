@@ -1,22 +1,22 @@
-export class xPathToCss {
+export class XPathToCss {
     isValidXPath(expr: string): boolean {
-        if (expr != 'undefined' &&
+        if (expr !== 'undefined' &&
             expr.replace(/[\s-_=]/g, '') !== '' &&
             expr.length === expr.replace(/[-_\w:.]+\(\)\s*=|=\s*[-_\w:.]+\(\)|\sor\s|\sand\s|\[(?:[^\/\]]+[\/\[]\/?.+)+\]|starts-with\(|\[.*last\(\)\s*[-\+<>=].+\]|number\(\)|not\(|count\(|text\(|first\(|normalize-space|[^\/]following-sibling|concat\(|descendant::|parent::|self::|child::|/gi, '').length) {
             return true;
-        } else { return false }
+        } else { return false; }
     }
 
     getValidationRegex() {
         let regex = "(?P<node>" +
             "(" +
-            "^id\\([\"\\']?(?P<idvalue>%(value)s)[\"\\']?\\)" +// special case! `id(idValue)`
+            "^id\\([\"\\']?(?P<idvalue>%(value)s)[\"\\']?\\)" + // special case! `id(idValue)`
             "|" +
             "(?P<nav>//?(?:following-sibling::)?)(?P<tag>%(tag)s)" + //  `//div`
             "(\\[(" +
             "(?P<matched>(?P<mattr>@?%(attribute)s=[\"\\'](?P<mvalue>%(value)s))[\"\\']" + // `[@id="well"]` supported and `[text()="yes"]` is not
             "|" +
-            "(?P<contained>contains\\((?P<cattr>@?%(attribute)s,\\s*[\"\\'](?P<cvalue>%(value)s)[\"\\']\\))" +// `[contains(@id, "bleh")]` supported and `[contains(text(), "some")]` is not
+            "(?P<contained>contains\\((?P<cattr>@?%(attribute)s,\\s*[\"\\'](?P<cvalue>%(value)s)[\"\\']\\))" + // `[contains(@id, "bleh")]` supported and `[contains(text(), "some")]` is not
             ")\\])?" +
             "(\\[\\s*(?P<nth>\\d|last\\(\\s*\\))\\s*\\])?" +
             ")" +
@@ -35,7 +35,7 @@ export class xPathToCss {
         return new RegExp(regex, 'gi');
     }
     preParseXpath(expr: string): string {
-        return expr.replace(/contains\s*\(\s*concat\(["']\s+["']\s*,\s*@class\s*,\s*["']\s+["']\)\s*,\s*["']\s+([a-zA-Z0-9-_]+)\s+["']\)/gi, '@class="$1"')
+        return expr.replace(/contains\s*\(\s*concat\(["']\s+["']\s*,\s*@class\s*,\s*["']\s+["']\)\s*,\s*["']\s+([a-zA-Z0-9-_]+)\s+["']\)/gi, '@class="$1"');
     }
     xPathToCss(expr: string): string {
         if (!expr) {
@@ -47,10 +47,10 @@ export class xPathToCss {
         }
         const xPathArr = expr.split('|');
         const prog = this.getValidationRegex();
-        const cssSelectors = [];
+        const cssSelectors: string[] = [];
         let xindex = 0;
         while (xPathArr[xindex]) {
-            const css = [];
+            const css: string[] = [];
             let position = 0;
             let nodes;
 
@@ -77,11 +77,11 @@ export class xPathToCss {
 
                 let nav = '';
 
-                if (position != 0 && match['nav']) {
+                if (position !== 0 && match['nav']) {
                     if (~match['nav'].indexOf('following-sibling::')) {
                         nav = ' + ';
                     } else {
-                        nav = (match['nav'] == '//') ? ' ' : ' > ';
+                        nav = (match['nav'] === '//') ? ' ' : ' > ';
                     }
                 }
 
@@ -148,5 +148,5 @@ export class xPathToCss {
         }
 
         return cssSelectors.join(', ');
-    };
+    }
 }
