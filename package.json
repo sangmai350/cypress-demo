@@ -14,18 +14,15 @@
     "@cypress/webpack-preprocessor": "^2.0.1",
     "@types/chai": "^4.1.7",
     "@types/jquery": "^3.3.22",
-    "@types/node": "^10.7.1",
     "cypress": "^3.1.2",
-    "debug": "^4.1.0",
-    "npm": "^6.4.1",
     "rxjs": "^6.3.3",
     "ts-config": "^18.0.0",
     "ts-loader": "^4.5.0",
-    "ts-node": "^3.3.0",
     "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.14.0",
     "typescript": "^2.9.2",
-    "webpack": "^4.26.0",
-    "xpath-to-css": "^1.0.3"
+    "webpack": "^4.26.0"
+  },
+  "devDependencies": {
+    "@types/cypress": "^1.1.3"
   }
 }

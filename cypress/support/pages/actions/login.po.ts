@@ -1,15 +1,13 @@
-import { LoginPageUI } from "../interfaces/login.interface";
-import { BasePage } from "../../common/basePage";
+import { LoginPageUI } from '../interfaces/login.interface';
+import { BasePage } from '../../common/basePage';
 import { from } from 'rxjs';
-import { resolve, reject } from "bluebird";
-
 export class LoginPage extends BasePage {
     constructor() {
         super();
     }
     gotoLoginPage() {
         cy.log('Go to Login Page');
-        this.gotoURL("https://dashboard.coachcaredev.com/");
+        this.gotoURL('https://dashboard.coachcaredev.com/');
     }
     inputUserName(username: string) {
         cy.log('Input The Username');
@@ -29,19 +27,17 @@ export class LoginPage extends BasePage {
         cy.title().should('include', title);
     }
     verifyProfileIsDisplayed(text: string) {
-        cy.log(`Verify Profile is displayed ${text}`);
-        this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
-        // let text1 = ''
+        // cy.log(`Verify Profile is displayed ${text}`);
+        // this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
         // this.getText(LoginPageUI.PROFILE_BUTTON).then(innerText => {
-        //     text1 = innerText.text();
         //     cy.log(innerText.text());
         // });
-        var observable = from(new Promise((resolve, reject) => {
-            resolve('Hello from a Promise!');
+        const observable = from(new Promise((resolve) => {
+            Promise.resolve('Hello from a Promise!');
         }
         ));
-        observable.subscribe(resolve => {
-            console.log(resolve);
-        })
+        observable.subscribe(x => {
+            console.log(x);
+        });
     }
 }
