@@ -1,9 +1,9 @@
 import { LoginPageUI } from "../interfaces/login.interface";
-import { BasePage } from "../../common/basePage";
-import { from } from 'rxjs';
-import { resolve, reject } from "bluebird";
+import { AbstractPage } from '../actions/abstract.po';
+// import { from } from 'rxjs';
+// import { resolve, reject } from "bluebird";
 
-export class LoginPage extends BasePage {
+export class LoginPage extends AbstractPage {
     constructor() {
         super();
     }
@@ -24,6 +24,10 @@ export class LoginPage extends BasePage {
         cy.log('Click Login Button');
         this.click(LoginPageUI.LOGIN_BUTTON);
     }
+    clickForgotPasswordButton() {
+        cy.log('Click Forgot Password Button');
+        this.click(LoginPageUI.FORGOT_PASSWORD_BUTTON);
+    }
     verifyTitle(title: string) {
         cy.log(`Verify Title is ${title}`);
         cy.title().should('include', title);
@@ -36,12 +40,12 @@ export class LoginPage extends BasePage {
         //     text1 = innerText.text();
         //     cy.log(innerText.text());
         // });
-        var observable = from(new Promise((resolve, reject) => {
-            resolve('Hello from a Promise!');
-        }
-        ));
-        observable.subscribe(resolve => {
-            console.log(resolve);
-        })
+        // var observable = from(new Promise((resolve, reject) => {
+        //     resolve('Hello from a Promise!');
+        // }
+        // ));
+        // observable.subscribe(resolve => {
+        //     console.log(resolve);
+        // })
     }
 }
