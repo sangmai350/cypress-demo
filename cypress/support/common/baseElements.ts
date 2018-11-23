@@ -1,10 +1,12 @@
 import { Constant } from './constanst';
 import { XPathToCss } from './xpathToCSS';
+import { format } from 'util';
 
 const timeout: number = Constant.TIMEOUT;
 export class BaseElement {
-    protected findElement(locator: string): Cypress.Chainable<JQuery> {
+    protected findElement(locator: string, param?: string): Cypress.Chainable<JQuery> {
         let control: any;
+        locator = param ? format(locator, param) : locator;
         if (locator.startsWith('css=')) {
             locator = locator.substring(4);
             control = cy.get(locator, { timeout: timeout });
