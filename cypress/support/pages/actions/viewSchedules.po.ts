@@ -1,4 +1,4 @@
-import { ViewSchedulesPageUI } from "../interfaces/viewSchedules.interface.3";
+// import { ViewSchedulesPageUI } from "../interfaces/viewSchedules.interface.3";
 import { AbstractPage } from './abstract.po';
 
 export class ViewSchedulesPage extends AbstractPage {
