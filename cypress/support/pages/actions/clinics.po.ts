@@ -1,4 +1,4 @@
-import { ClinicsPageUI } from "../interfaces/clinics.interface";
+// import { ClinicsPageUI } from "../interfaces/clinics.interface";
 import { AbstractPage } from './abstract.po';
 
 export class ClinicsPage extends AbstractPage {

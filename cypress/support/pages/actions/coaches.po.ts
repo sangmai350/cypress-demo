@@ -1,4 +1,4 @@
-import { CoachesPageUI } from "../interfaces/coaches.interface.";
+// import { CoachesPageUI } from "../interfaces/coaches.interface.";
 import { AbstractPage } from './abstract.po';
 
 export class CoachesPage extends AbstractPage {
