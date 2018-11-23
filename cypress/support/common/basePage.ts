@@ -5,11 +5,11 @@ export class BasePage extends BaseElement {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         element.should('be.visible').clear().type(value);
     }
-    click(locator: string, param: string) {
+    click(locator: string, param?: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         element.should('be.visible').click();
     }
-    doubleClick(locator: string, param: string) {
+    doubleClick(locator: string, param?: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         element.should('be.visible').dblclick();
     }
@@ -55,6 +55,11 @@ export class BasePage extends BaseElement {
         const should = negative ? 'be' : 'not.be';
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         element.should(`${should}.visible`);
+    }
+    shouldExists(locator: string, negative: boolean = true, param?: string) {
+        const should = negative ? 'be' : 'not';
+        const element = param ? this.findElement(locator, param) : this.findElement(locator);
+        element.should(`${should}.exist`);
     }
     gotoURL(url: string) {
         cy.visit(url);

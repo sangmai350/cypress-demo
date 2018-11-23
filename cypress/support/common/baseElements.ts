@@ -18,7 +18,7 @@ export class BaseElement {
             locator = locator.substring(8);
             const text = locator.split(' Text=')[1];
             locator = locator.split(' Text=')[0];
-            control = cy.get(locator, { timeout: timeout }).contains(text);
+            control = cy.get(locator, { timeout: timeout }).contains(locator, text);
         }
         return control;
     }

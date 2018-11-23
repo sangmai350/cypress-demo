@@ -3,6 +3,10 @@
     "compilerOptions": {
         "baseUrl": "../node_modules",
         "noImplicitAny": false,
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "declaration": true,
         "target": "es6",
         "lib": [
             "dom",
