@@ -9,16 +9,16 @@ export class BaseElement {
         locator = param ? format(locator, param) : locator;
         if (locator.startsWith('css=')) {
             locator = locator.substring(4);
-            control = cy.get(locator, { timeout: timeout });
+            control = cy.get(locator, { timeout: timeout }).scrollIntoView();
         } else if (locator.startsWith('xpath=')) {
             locator = locator.substring(6);
             const cssControl = new XPathToCss().xPathToCss(locator);
-            control = cy.get(cssControl, { timeout: timeout });
+            control = cy.get(cssControl, { timeout: timeout }).scrollIntoView();
         } else if (locator.startsWith('cssText=')) {
             locator = locator.substring(8);
             const text = locator.split(' Text=')[1];
             locator = locator.split(' Text=')[0];
-            control = cy.get(locator, { timeout: timeout }).contains(text);
+            control = cy.get(locator, { timeout: timeout }).contains(locator, text).scrollIntoView();
         }
         return control;
     }
