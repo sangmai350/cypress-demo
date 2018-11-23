@@ -9,7 +9,7 @@ export class LoginPage extends AbstractPage {
     }
     gotoLoginPage() {
         cy.log('Go to Login Page');
-        this.gotoURL("https://dashboard.coachcaredev.com/");
+        this.gotoURL('https://dashboard.coachcaredev.com/');
     }
     inputUserName(username: string) {
         cy.log('Input The Username');
@@ -35,17 +35,8 @@ export class LoginPage extends AbstractPage {
     verifyProfileIsDisplayed(text: string) {
         cy.log(`Verify Profile is displayed ${text}`);
         this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
-        // let text1 = ''
-        // this.getText(LoginPageUI.PROFILE_BUTTON).then(innerText => {
-        //     text1 = innerText.text();
-        //     cy.log(innerText.text());
-        // });
-        // var observable = from(new Promise((resolve, reject) => {
-        //     resolve('Hello from a Promise!');
-        // }
-        // ));
-        // observable.subscribe(resolve => {
-        //     console.log(resolve);
-        // })
+        this.getText(LoginPageUI.PROFILE_BUTTON).then(_text => {
+            cy.log(_text.get(0).innerText);
+        });
     }
 }

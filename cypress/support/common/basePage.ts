@@ -1,4 +1,4 @@
-import { BaseElement } from "./baseElements";
+import { BaseElement } from './baseElements';
 export class BasePage extends BaseElement {
 
     type(locator: string, value: string) {
@@ -11,7 +11,7 @@ export class BasePage extends BaseElement {
     }
     doubleClick(locator: string) {
         const element = this.findElement(locator);
-        element.dblclick()
+        element.dblclick();
     }
     checkToCheckbox(locator: string, isChecked: boolean) {
         const element = this.findElement(locator);
@@ -38,12 +38,12 @@ export class BasePage extends BaseElement {
         element.not('[disabled]').select(values);
     }
     shouldHasValue(locator: string, value: string, negative: boolean = true) {
-        const should = negative ? "have" : "not.have";
+        const should = negative ? 'have' : 'not.have';
         const element = this.findElement(locator);
         element.should(`${should}.value`, value);
     }
     shouldHasText(locator: string, text: string, negative: boolean = true) {
-        const should = negative ? "have" : "not.have";
+        const should = negative ? 'have' : 'not.have';
         const element = this.findElement(locator);
         element.should(`${should}.text`, text);
     }
@@ -52,7 +52,7 @@ export class BasePage extends BaseElement {
         element.should('have.attr', 'style', style);
     }
     shouldVisible(locator: string, negative: boolean = true) {
-        const should = negative ? "be" : "not.be";
+        const should = negative ? 'be' : 'not.be';
         const element = this.findElement(locator);
         element.should(`${should}.visible`);
     }
@@ -68,7 +68,7 @@ export class BasePage extends BaseElement {
     }
     getText(locator: string) {
         return this.findElement(locator).should(($elemnt) => {
-            return $elemnt.text();
+            return $elemnt;
         });
     }
 }
