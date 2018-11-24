@@ -7,11 +7,7 @@ export class BasePage extends BaseElement {
     }
     click(locator: string, param?: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
-<<<<<<< HEAD
         element.scrollIntoView().should('be.visible').click();
-=======
-        element.should('be.visible').click();
->>>>>>> cb9d54f1093f078861bcad303f778611fed677d2
     }
     doubleClick(locator: string, param: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
