@@ -52,9 +52,9 @@ describe("Dashboard page Test With Cypress", () => {
       loginPage.clickLoginButton();
     });
 
-    it("Verify dashboard is loaded", () => {
-      dashboardPage.verifyDashboardPanelDisplayed();
-    });
+    // it("Verify dashboard is loaded", () => {
+    //   dashboardPage.verifyDashboardPanelDisplayed();
+    // });
 
     it("Verify user can navigate to patient page when clicking View All Patient button", () => {
       dashboardPage.clickViewAllPatientsButton();

@@ -7,8 +7,10 @@ export class BasePage extends BaseElement {
     }
     click(locator: string, param?: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
-        element.scrollIntoView().should('be.visible').click();
+        element.scrollIntoView();
+        element.should('be.visible').click();
     }
+
     doubleClick(locator: string, param: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         element.should('be.visible').dblclick();
