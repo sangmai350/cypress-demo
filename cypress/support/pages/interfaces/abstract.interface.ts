@@ -8,4 +8,7 @@ export class AbstractPageUI {
     static readonly PRIMARY_LINK = 'css=a[color=primary]';
     static readonly SELECT_OPTION = 'cssText=mat-option span Text= %s ';
     static readonly NOTIFICATION_SPAN = 'cssText=simple-snack-bar span Text=%s';
+    static readonly LEFT_NAV_MENU_BUTTON = 'cssText=.mat-list-item-content span Text=%s';
+    static readonly LEFT_NAV_SUBMENU_BUTTON = 'cssText=mat-list-item div span Text=%s';
+    static readonly PRIMARY_LINK_BY_NAME = 'cssText=a[color="primary"] span span Text=%s';
 }

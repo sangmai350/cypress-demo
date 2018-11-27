@@ -28,5 +28,49 @@ export class AbstractPage extends BasePage {
         this.shouldHasText(AbstractPageUI.PAGE_HEADER, text);
     }
 
+    openLeftNavMenu(label: string) {
+        cy.log(`Open Left Nav Menu ${label}`);
+        this.click(AbstractPageUI.LEFT_NAV_MENU_BUTTON, label);
+    }
 
+    openLeftNavSubMenu(label: string) {
+        cy.log(`Open Left Nav Menu ${label}`);
+        this.click(AbstractPageUI.LEFT_NAV_SUBMENU_BUTTON, label);
+    }
+
+    clickPrimaryButton() {
+        cy.log(`Click Primary button`);
+        this.click(AbstractPageUI.PRIMARY_BUTTON);
+    }
+
+    clickPrimaryLink() {
+        cy.log(`Click Primary link`);
+        this.click(AbstractPageUI.PRIMARY_LINK);
+    }
+
+    clickPrimaryLinkByName(label: string) {
+        cy.log(`Click Primary link ${label}`);
+        this.click(AbstractPageUI.PRIMARY_LINK_BY_NAME, label);
+    }
+
+    typeToTextfieldByPlaceholder(text: string, label: string) {
+        cy.log(`Type to textfield ${label} with text: ${text}`);
+        this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, text, label);
+    }
+
+    selectOptionByLabel(label: string, option: string) {
+        cy.log(`Select option: ${option} from selecter with label: ${label}`);
+        this.click(AbstractPageUI.SELECT_BY_LABEL, label);
+        this.click(AbstractPageUI.SELECT_OPTION, option);
+    }
+
+    clickButtonByLabel(label: string) {
+        cy.log(`Click Button by with label: ${label}`);
+        this.click(AbstractPageUI.BUTTON_BY_LABEL, label);
+    }
+
+    verifyNotificationSpanDisplayed(text: string) {
+        cy.log(`Notification "${text}" should be displayed.`);
+        this.shouldVisible(AbstractPageUI.NOTIFICATION_SPAN, true, text);
+    }
 }
