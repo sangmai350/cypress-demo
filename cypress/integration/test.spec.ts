@@ -43,25 +43,25 @@ const password = Constant.PROIVER_PASS;
 //   });
 // });
 
-// describe("Dashboard page Test With Cypress", () => {
-//   context("View dashboard page", () => {
-//     beforeEach(() => {
-//       loginPage.gotoLoginPage();
-//       loginPage.inputUserName(username);
-//       loginPage.inputPassword(password);
-//       loginPage.clickLoginButton();
-//     });
+describe("Dashboard page Test With Cypress", () => {
+  context("View dashboard page", () => {
+    beforeEach(() => {
+      loginPage.gotoLoginPage();
+      loginPage.inputUserName(username);
+      loginPage.inputPassword(password);
+      loginPage.clickLoginButton();
+    });
 
-//     it("Verify dashboard is loaded", () => {
-//       dashboardPage.verifyDashboardPanelDisplayed();
-//     });
+    it("Verify dashboard is loaded", () => {
+      dashboardPage.verifyDashboardPanelDisplayed();
+    });
 
-//     it("Verify user can navigate to patient page when clicking View All Patient button", () => {
-//       dashboardPage.clickViewAllPatientsButton();
-//       dashboardPage.verifyPageHeaderDisplayed("Patients");
-//     });
-//   });
-// });
+    it("Verify user can navigate to patient page when clicking View All Patient button", () => {
+      dashboardPage.clickViewAllPatientsButton();
+      dashboardPage.verifyPageHeaderDisplayed("Patients");
+    });
+  });
+});
 
 describe("Patients page Test With Cypress", () => {
   context("View Patients page", () => {
