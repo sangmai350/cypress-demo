@@ -18,6 +18,11 @@ export class AbstractPage extends BasePage {
         this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, text, placeholder);
     }
 
+    textareaByPlaceholder(text: string, placeholder: string) {
+        cy.log(`Input ${text} to ${placeholder} textarea`);
+        this.type(AbstractPageUI.TEXTAREA_BY_PLACEHOLDER, text, placeholder);
+    }
+
     clickTableFirstRow(locator: string) {
         cy.log(`Click first row of table`);
         this.click(AbstractPageUI.TABLE_FIRST_ROW);
@@ -51,6 +56,11 @@ export class AbstractPage extends BasePage {
     clickPrimaryLinkByName(label: string) {
         cy.log(`Click Primary link ${label}`);
         this.click(AbstractPageUI.PRIMARY_LINK_BY_NAME, label);
+    }
+
+    clickPrimaryLinkByNameOneSpan(label: string) {
+        cy.log(`Click Primary link ${label}`);
+        this.click(AbstractPageUI.PRIMARY_LINK_BY_NAME_ONE_SPAN, label);
     }
 
     typeToTextfieldByPlaceholder(text: string, label: string) {

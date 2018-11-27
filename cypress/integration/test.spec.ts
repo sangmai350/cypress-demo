@@ -3,15 +3,20 @@ import { LoginPage } from '../support/pages/actions/login.po';
 // import { ForgotPasswordPage } from '../support/pages/actions/forgotPassword.po';
 import { DashboardPage } from '../support/pages/actions/dashboard.po';
 // import { PatientsPage } from '../support/pages/actions/patients.po';
-import { CoachesPage } from '../support/pages/actions/coaches.po';
+// import { CoachesPage } from '../support/pages/actions/coaches.po';
+import { MessagePage } from '../support/pages/actions/message.po';
+import { ProfilePage } from '../support/pages/actions/profile.po';
+// import { ClinicsPage } from '../support/pages/actions/clinics.po';
 import { Constant } from '../support/common/constanst';
 
 const loginPage = new LoginPage();
 // const forgotPasswordPage = new ForgotPasswordPage();
 const dashboardPage = new DashboardPage();
 // const patientsPage = new PatientsPage();
-const coachesPage = new CoachesPage();
-
+// const coachesPage = new CoachesPage();
+const messagePage = new MessagePage();
+const profilePage = new ProfilePage();
+// const clinicsPage = new ClinicsPage();
 const username = Constant.PROVIDER_EMAIL;
 const password = Constant.PROIVER_PASS;
 
@@ -56,9 +61,9 @@ const password = Constant.PROIVER_PASS;
 //       loginPage.clickLoginButton();
 //     });
 
-//     it("Verify dashboard is loaded", () => {
-//       dashboardPage.verifyDashboardPanelDisplayed();
-//     });
+// it("Verify dashboard is loaded", () => {
+//   dashboardPage.verifyDashboardPanelDisplayed();
+// });
 
 //     it("Verify user can navigate to patient page when clicking View All Patient button", () => {
 //       dashboardPage.clickViewAllPatientsButton();
@@ -70,6 +75,7 @@ const password = Constant.PROIVER_PASS;
 // describe("Patients page Test With Cypress", () => {
 //   context("View Patients page", () => {
 //     beforeEach(() => {
+//       cy.viewport("macbook-15");
 //       loginPage.gotoLoginPage();
 //       loginPage.inputUserName(username);
 //       loginPage.inputPassword(password);
@@ -77,47 +83,89 @@ const password = Constant.PROIVER_PASS;
 //       dashboardPage.clickViewAllPatientsButton();
 //     });
 
-//     it("Verify Patients page is loaded", () => {
-//       patientsPage.verifyPatientsPageLoaded();
-//     });
+// it("Verify Patients page is loaded", () => {
+//   patientsPage.verifyPatientsPageLoaded();
+// });
 
-//     it("Verify user can create new patient", () => {
-//       patientsPage.createNewClient("Toan", "Tran", `validEmail${AbstractPage.uniqueID()}@gmail.com`, "1234567890", "123", "Male");
-//       patientsPage.verifyPatientAdded();
-//     });
+// it("Verify user can create new patient", () => {
+//   patientsPage.createNewClient("Toan", "Tran", `validEmail${AbstractPage.uniqueID()}@gmail.com`, "1234567890", "123", "Male");
+//   patientsPage.verifyPatientAdded();
+// });
 
-//     it("Verify user can goes to patient detail page", () => {
-//       patientsPage.openFirstPatient();
-//       patientsPage.verifyPatientDetailsDisplayed();
-//     });
+// it("Verify user can goes to patient detail page", () => {
+//   patientsPage.openFirstPatient();
+//   patientsPage.verifyPatientDetailsDisplayed();
+// });
 
 //     it("- Verify user can add a measurement for a patient", () => {
 //       patientsPage.openFirstPatient();
 //       patientsPage.clickPatientMenu("Measurements");
-//       patientsPage.addMeasurement("100", "100", "100", "100");
+//       patientsPage.addMeasurement("100", "100", "100", "100", "100");
 //       patientsPage.verifyMeasurementAdded();
 //     });
 //   });
 // });
 
-describe("Coaches page Test With Cypress", () => {
-  context("Checking Coaches page", () => {
+// describe("Coaches page Test With Cypress", () => {
+//   context("Checking Coaches page", () => {
+//     beforeEach(() => {
+//       loginPage.gotoLoginPage();
+//       loginPage.inputUserName(username);
+//       loginPage.inputPassword(password);
+//       loginPage.clickLoginButton();
+//       dashboardPage.openLeftNavMenu("Accounts");
+//       dashboardPage.openLeftNavSubMenu("Coaches");
+//     });
+
+//     it("Verify Coach page is loaded", () => {
+//       coachesPage.verifyCoachTableDisplayed();
+//     });
+
+//     it("Verify user can create new coach", () => {
+//       coachesPage.addNewCoach("Toan", "Tran", `validEmail${AbstractPage.uniqueID()}@gmail.com`, "1234567890", "LeanMD");
+//       coachesPage.verifyNotificationSpanDisplayed("Coach successfully created.");
+//     });
+//   });
+// });
+
+describe("Message page Test With Cypress", () => {
+  context("Checking Messages page", () => {
     beforeEach(() => {
       loginPage.gotoLoginPage();
       loginPage.inputUserName(username);
       loginPage.inputPassword(password);
       loginPage.clickLoginButton();
-      dashboardPage.openLeftNavMenu("Accounts");
-      dashboardPage.openLeftNavSubMenu("Coaches");
+      dashboardPage.openLeftNavMenu("Messages");
     });
 
-    it("Verify Coach page is loaded", () => {
-      coachesPage.verifyCoachTableDisplayed();
+    it("Verify Message page is loaded", () => {
+      messagePage.verifyMessagePageDisplayed();
     });
 
-    it("Verify user can create new coach", () => {
-      coachesPage.addNewCoach("Toan", "Tran", `validEmail${AbstractPage.uniqueID()}@gmail.com`, "1234567890", "LeanMD");
-      coachesPage.verifyNotificationSpanDisplayed("Coach successfully created.");
+    it("Verify user can send message", () => {
+      const text = AbstractPage.uniqueID();
+      messagePage.sendMessage(text);
+      messagePage.verifyMessageIsSent(text);
+    });
+  });
+});
+
+describe("Profile page Test With Cypress", () => {
+  context("Checking Profile page", () => {
+    beforeEach(() => {
+      loginPage.gotoLoginPage();
+      loginPage.inputUserName(username);
+      loginPage.inputPassword(password);
+      loginPage.clickLoginButton();
+      dashboardPage.openProfilePage();
+    });
+
+    it("Verify Profile page is loaded", () => {
+      profilePage.verifyProfilePageDisplays();
+    });
+
+    it("Verify User can edit profile successfully", () => {
+      profilePage.verifyProfileIsUpdated();
     });
   });
 });

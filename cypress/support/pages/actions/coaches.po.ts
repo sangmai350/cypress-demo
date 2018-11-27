@@ -14,6 +14,7 @@ export class CoachesPage extends AbstractPage {
         this.typeToTextfieldByPlaceholder(email, "Email");
         this.typeToTextfieldByPlaceholder(phone, "Phone");
         this.typeToTextfieldByPlaceholder(clinic, "Search Clinic");
+        this.wait(5);
         this.click(CoachesPageUI.SELECT_CLINIC);
         this.clickPrimaryButton();
     }

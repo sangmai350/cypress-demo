@@ -1,4 +1,4 @@
-// import { ViewSchedulesPageUI } from "../interfaces/viewSchedules.interface.3";
+import { ViewSchedulesPageUI } from "../interfaces/viewSchedules.interface.3";
 import { AbstractPage } from './abstract.po';
 
 export class ViewSchedulesPage extends AbstractPage {
@@ -11,8 +11,17 @@ export class ViewSchedulesPage extends AbstractPage {
     //     this.click(DashboardPageUI.VIEW_ALL_PATIENT_BUTTON);
     // }
 
-    // verifyDashboardPanelDisplayed() {
-    //     cy.log(`Verify Dashboard Panel is displayed`);
-    //     this.shouldVisible(DashboardPageUI.DASHBOARD_PANEL);
-    // }
+    verifyViewSchedulesPanelDisplayed() {
+        cy.log(`Verify View Schedules Panel is displayed`);
+        this.shouldVisible(ViewSchedulesPageUI.VIEW_SCHEDULES_PANEL);
+    }
+
+    removeSelectableSchedule() {
+        cy.get('div[class="meeting meeting-selectable ng-star-inserted"]').should(($element) => {
+            if ($element.length > 0) {
+                $element.click();
+                this.click(ViewSchedulesPageUI.DELETE_SCHEDULE);
+            }
+        });
+    }
 }

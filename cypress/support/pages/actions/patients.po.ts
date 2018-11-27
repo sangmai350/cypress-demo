@@ -32,12 +32,14 @@ export class PatientsPage extends AbstractPage {
         this.click(PatientsPageUI.PATIENT_MENU, menuName);
     }
 
-    addMeasurement(waist: string, arm: string, chest: string, thigh: string) {
+    addMeasurement(waist: string, arm: string, chest: string, hip: string, thigh: string) {
         cy.log(`Add measurement`);
         this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, waist, "Waist");
         this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, arm, "Arm");
         this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, chest, "Chest");
+        this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, hip, "Hip");
         this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, thigh, "Thigh");
+        this.clickPrimaryLinkByNameOneSpan("Add Measurement");
     }
 
     verifyPatientDetailsDisplayed() {
