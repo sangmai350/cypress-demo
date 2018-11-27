@@ -1,5 +1,6 @@
 import { AbstractPageUI } from "../interfaces/abstract.interface";
 import { BasePage } from "../../common/basePage";
+import { v4 as uuid } from 'uuid';
 // import { from } from 'rxjs';
 // import { resolve, reject } from "bluebird";
 
@@ -8,10 +9,13 @@ export class AbstractPage extends BasePage {
         super();
     }
 
-    inputByPlaceholder(placeholder: string, text: string) {
+    static uniqueID() {
+        return uuid();
+    }
+
+    inputByPlaceholder(text: string, placeholder: string) {
         cy.log(`Input ${text} to ${placeholder} textfield`);
-        var locator = AbstractPageUI.INPUT_BY_PLACEHOLDER.replace("%s", placeholder);
-        this.type(locator, text);
+        this.type(AbstractPageUI.INPUT_BY_PLACEHOLDER, text, placeholder);
     }
 
     clickTableFirstRow(locator: string) {
@@ -23,4 +27,6 @@ export class AbstractPage extends BasePage {
         cy.log(`Verify Page Header is displayed`);
         this.shouldHasText(AbstractPageUI.PAGE_HEADER, text);
     }
+
+
 }
