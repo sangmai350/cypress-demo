@@ -78,4 +78,10 @@ export class BasePage extends BaseElement {
         const text = await promisify(element.then($el => $el.text()));
         return text;
     }
+
+    async isControlExist(locator: string, param?: string): Promise<boolean> {
+        const element = param ? this.findElement(locator, param) : this.findElement(locator);
+        const lengthOfElement = await promisify(element.then($el => $el.length));
+        return lengthOfElement !== 0;
+    }
 }

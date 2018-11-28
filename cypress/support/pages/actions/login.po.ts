@@ -35,7 +35,8 @@ export class LoginPage extends AbstractPage {
     async verifyProfileIsDisplayed(text: string) {
         cy.log(`Verify Profile is displayed ${text}`);
         this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
-        const returnText = await this.getText(LoginPageUI.PROFILE_BUTTON);
-        cy.log(returnText);
+        // const returnText = await this.getText(LoginPageUI.PROFILE_BUTTON);
+        const isElementExist = await this.isControlExist(LoginPageUI.PROFILE_BUTTON);
+        cy.log(`${isElementExist ? 'Dang display neeee' : 'DM eo hien roi'}`);
     }
 }
