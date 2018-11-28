@@ -12,13 +12,7 @@ import { OverviewPage } from '../support/pages/actions/overview.po';
 import { UserStatisticsPage } from '../support/pages/actions/userStatistics.po';
 import { NotificationPage } from '../support/pages/actions/notifications.po';
 import { NotificationSettingsPage } from '../support/pages/actions/notificationSettings.po';
-import { ContactUsPage } from '../support/pages/actions/contactUs.po';
-// import { GDPRDPAPage } from '../support/pages/actions/GDPRDPA.po';
-// import { HIPAABAAPage } from '../support/pages/actions/HIPAABAA.po';
-// import { MSAPage } from '../support/pages/actions/MSA.po';
-// import { PrivacyPolicyPage } from '../support/pages/actions/privacyPolicy.po';
 // import { SetAvailabilityPage } from '../support/pages/actions/setAvailability.po';
-// import { TermsOfServicePage } from '../support/pages/actions/termsOfService.po';
 // import { ViewSchedulesPage } from '../support/pages/actions/viewSchedules.po';
 // import { SupportPage } from '../support/pages/actions/support.po';
 
@@ -34,15 +28,8 @@ const overviewPage = new OverviewPage();
 const userStatistics = new UserStatisticsPage();
 const notificationPage = new NotificationPage();
 const notificationSettings = new NotificationSettingsPage();
-const contactUsPage = new ContactUsPage();
-// const gdprdpaPage = new GDPRDPAPage();
-// const hipaabaaPage = new HIPAABAAPage();
-// const msaPage = new MSAPage();
-// const privacyPolicyPage = new PrivacyPolicyPage();
 // const setAvailabilityPage = new SetAvailabilityPage();
-// const termsOfService = new TermsOfServicePage();
 // const viewSchedulesPage = new ViewSchedulesPage();
-// const notificationSettingsPage = new NotificationSettingsPage();
 // const supportPage = new SupportPage();
 
 const username = Constant.PROVIDER_EMAIL;
@@ -290,15 +277,34 @@ describe("User Notification Settings Test With Cypress", () => {
   });
 });
 
-describe.only("Contact Us page Test With Cypress", () => {
-  context("Checking Contact Us page", () => {
+describe.only("All footer page Test With Cypress", () => {
+  context("Checking all footer page", () => {
     beforeEach(() => {
       loginPage.gotoLoginPage();
-      loginPage.clickFooterLinkByName("Contact Us");
     });
 
     it("Verify Contact Us page is loaded", () => {
-      contactUsPage.verifyContactUsPageDisplayed();
+      loginPage.verifyFooterLinkByName("Contact Us", "Submit a request");
+    });
+
+    it("Verify Terms of Service page is loaded", () => {
+      loginPage.verifyFooterLinkByName("Terms of Service", "CoachCare Terms of Service");
+    });
+
+    it("Verify Privacy Policy page is loaded", () => {
+      loginPage.verifyFooterLinkByName("Privacy Policy", "CoachCare Privacy Policy");
+    });
+
+    it("Verify HIPAA BAA page is loaded", () => {
+      loginPage.verifyFooterLinkByName("HIPAA BAA", "CoachCare HIPAA Business Associate Agreement");
+    });
+
+    it("Verify MSA page is loaded", () => {
+      loginPage.verifyFooterLinkByName("MSA", "CoachCare Master Subscription Agreement");
+    });
+
+    it("Verify GDPR DPA page is loaded", () => {
+      loginPage.verifyFooterLinkByName("GDPR DPA", "CoachCare GDPR Data Protection Addendum");
     });
   });
 });

@@ -84,8 +84,9 @@ export class AbstractPage extends BasePage {
         this.shouldVisible(AbstractPageUI.NOTIFICATION_SPAN, true, text);
     }
 
-    clickFooterLinkByName(name: string) {
+    async verifyFooterLinkByName(name: string, text: string) {
         cy.log(`Click footer link: "${name}".`);
-        this.click(AbstractPageUI.FOOTER_LINK_BY_NAME, name);
+        const url = await this.getAttributeElement(AbstractPageUI.FOOTER_LINK_BY_NAME, "href", name);
+        cy.request(url).its('body').should("include", text);
     }
 }

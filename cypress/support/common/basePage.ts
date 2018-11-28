@@ -12,6 +12,11 @@ export class BasePage extends BaseElement {
         element.should('be.visible').click();
     }
 
+    clickWithoutTarget(locator: string, param?: string) {
+        const element = param ? this.findElement(locator, param) : this.findElement(locator);
+        element.should('be.visible').invoke('removeAttr', 'target').click();
+    }
+
     scrollIntoElement(locator: string, param?: string) {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         element.scrollIntoView().should('be.visible');
