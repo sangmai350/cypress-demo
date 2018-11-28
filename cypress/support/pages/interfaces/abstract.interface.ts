@@ -13,4 +13,5 @@ export class AbstractPageUI {
     static readonly LEFT_NAV_SUBMENU_BUTTON = 'cssText=mat-list-item div span Text=%s';
     static readonly PRIMARY_LINK_BY_NAME = 'cssText=a[color="primary"] span span Text=%s';
     static readonly PRIMARY_LINK_BY_NAME_ONE_SPAN = 'cssText=a[color="primary"] span Text=%s';
+    static readonly FOOTER_LINK_BY_NAME = 'cssText=a[rel="noopener noreferrer"] Text=%s';
 }

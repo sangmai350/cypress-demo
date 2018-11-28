@@ -1,4 +1,5 @@
 import { AbstractPage } from '../support/pages/actions/abstract.po';
+import { Constant } from '../support/common/constanst';
 import { LoginPage } from '../support/pages/actions/login.po';
 import { ForgotPasswordPage } from '../support/pages/actions/forgotPassword.po';
 import { DashboardPage } from '../support/pages/actions/dashboard.po';
@@ -6,12 +7,20 @@ import { PatientsPage } from '../support/pages/actions/patients.po';
 import { CoachesPage } from '../support/pages/actions/coaches.po';
 import { MessagePage } from '../support/pages/actions/message.po';
 import { ProfilePage } from '../support/pages/actions/profile.po';
-// import { ClinicsPage } from '../support/pages/actions/clinics.po';
+import { ClinicsPage } from '../support/pages/actions/clinics.po';
 import { OverviewPage } from '../support/pages/actions/overview.po';
 import { UserStatisticsPage } from '../support/pages/actions/userStatistics.po';
 import { NotificationPage } from '../support/pages/actions/notifications.po';
 import { NotificationSettingsPage } from '../support/pages/actions/notificationSettings.po';
-import { Constant } from '../support/common/constanst';
+import { ContactUsPage } from '../support/pages/actions/contactUs.po';
+// import { GDPRDPAPage } from '../support/pages/actions/GDPRDPA.po';
+// import { HIPAABAAPage } from '../support/pages/actions/HIPAABAA.po';
+// import { MSAPage } from '../support/pages/actions/MSA.po';
+// import { PrivacyPolicyPage } from '../support/pages/actions/privacyPolicy.po';
+// import { SetAvailabilityPage } from '../support/pages/actions/setAvailability.po';
+// import { TermsOfServicePage } from '../support/pages/actions/termsOfService.po';
+// import { ViewSchedulesPage } from '../support/pages/actions/viewSchedules.po';
+// import { SupportPage } from '../support/pages/actions/support.po';
 
 const loginPage = new LoginPage();
 const forgotPasswordPage = new ForgotPasswordPage();
@@ -20,11 +29,22 @@ const patientsPage = new PatientsPage();
 const coachesPage = new CoachesPage();
 const messagePage = new MessagePage();
 const profilePage = new ProfilePage();
-// const clinicsPage = new ClinicsPage();
+const clinicsPage = new ClinicsPage();
 const overviewPage = new OverviewPage();
 const userStatistics = new UserStatisticsPage();
 const notificationPage = new NotificationPage();
 const notificationSettings = new NotificationSettingsPage();
+const contactUsPage = new ContactUsPage();
+// const gdprdpaPage = new GDPRDPAPage();
+// const hipaabaaPage = new HIPAABAAPage();
+// const msaPage = new MSAPage();
+// const privacyPolicyPage = new PrivacyPolicyPage();
+// const setAvailabilityPage = new SetAvailabilityPage();
+// const termsOfService = new TermsOfServicePage();
+// const viewSchedulesPage = new ViewSchedulesPage();
+// const notificationSettingsPage = new NotificationSettingsPage();
+// const supportPage = new SupportPage();
+
 const username = Constant.PROVIDER_EMAIL;
 const password = Constant.PROIVER_PASS;
 
@@ -110,6 +130,23 @@ describe("Patients page Test With Cypress", () => {
       patientsPage.clickPatientMenu("Measurements");
       patientsPage.addMeasurement("100", "100", "100", "100", "100");
       patientsPage.verifyMeasurementAdded();
+    });
+  });
+});
+
+describe("Clinics page Test With Cypress", () => {
+  context("Checking Clinics page", () => {
+    beforeEach(() => {
+      loginPage.gotoLoginPage();
+      loginPage.inputUserName(username);
+      loginPage.inputPassword(password);
+      loginPage.clickLoginButton();
+      dashboardPage.openLeftNavMenu("Accounts");
+      dashboardPage.openLeftNavSubMenu("Clinics");
+    });
+
+    it("Verify Clinics page is loaded", () => {
+      clinicsPage.verifyClinicsTableDisplayed();
     });
   });
 });
@@ -249,6 +286,19 @@ describe("User Notification Settings Test With Cypress", () => {
 
     it("Verify Notification settings page is loaded", () => {
       notificationSettings.verifyNotificationSettingsPageDisplayed();
+    });
+  });
+});
+
+describe.only("Contact Us page Test With Cypress", () => {
+  context("Checking Contact Us page", () => {
+    beforeEach(() => {
+      loginPage.gotoLoginPage();
+      loginPage.clickFooterLinkByName("Contact Us");
+    });
+
+    it("Verify Contact Us page is loaded", () => {
+      contactUsPage.verifyContactUsPageDisplayed();
     });
   });
 });

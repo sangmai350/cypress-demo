@@ -83,4 +83,9 @@ export class AbstractPage extends BasePage {
         cy.log(`Notification "${text}" should be displayed.`);
         this.shouldVisible(AbstractPageUI.NOTIFICATION_SPAN, true, text);
     }
+
+    clickFooterLinkByName(name: string) {
+        cy.log(`Click footer link: "${name}".`);
+        this.click(AbstractPageUI.FOOTER_LINK_BY_NAME, name);
+    }
 }
