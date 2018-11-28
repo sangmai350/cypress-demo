@@ -1,3 +1,3 @@
 export class UserStatisticsPageUI {
-    static readonly PLACEHOLDER = 'css=app-UserStatistics-panel[class]';
+    static readonly USER_STATISTICS_PANEL = 'css=app-reports-statistics';
 }

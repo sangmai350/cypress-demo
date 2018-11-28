@@ -1,4 +1,4 @@
-// import { OverviewPageUI } from "../interfaces/overview.interface";
+import { OverviewPageUI } from "../interfaces/overview.interface";
 import { AbstractPage } from './abstract.po';
 
 export class OverviewPage extends AbstractPage {
@@ -6,13 +6,18 @@ export class OverviewPage extends AbstractPage {
         super();
     }
 
-    // placeholder() {
-    //     cy.log('Click View all patient Button');
-    //     this.click(OverviewPageUI.VIEW_ALL_PATIENT_BUTTON);
-    // }
+    clickActiveUserLink() {
+        cy.log('Click Active user link');
+        this.click(OverviewPageUI.ACTIVE_USER_LINK);
+    }
 
-    // verifyplaceholder() {
-    //     cy.log(`Verify Overview Panel is displayed`);
-    //     this.shouldVisible(OverviewPageUI.Overview_PANEL);
-    // }
+    verifyOverviewPageDisplayed() {
+        cy.log(`Verify Overview Panel is displayed`);
+        this.shouldVisible(OverviewPageUI.OVERVIEW_PAGE_PANEL);
+    }
+
+    verifyActiveUserTableDisplayed() {
+        cy.log(`Verify Active User table is displayed`);
+        this.shouldVisible(OverviewPageUI.ACTIVE_USER_TABLE);
+    }
 }

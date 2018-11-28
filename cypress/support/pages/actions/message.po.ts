@@ -10,6 +10,7 @@ export class MessagePage extends AbstractPage {
         cy.log('Send message from current user');
         this.textareaByPlaceholder(text, "Type your message here...");
         this.click(MessagePageUI.SEND_BUTTON);
+        this.wait(3);
     }
 
     verifyMessageIsSent(text: string) {

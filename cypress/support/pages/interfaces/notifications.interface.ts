@@ -1,3 +1,3 @@
 export class NotificationsPageUI {
-    static readonly PLACEHOLDER = 'css=app-Notifications-panel[class]';
+    static readonly NOTIFICATION_PANEL = 'css=app-reports-alerts';
 }

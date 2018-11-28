@@ -1,4 +1,4 @@
-// import { NotificationSettingsPageUI } from "../interfaces/notificationSettings.interface";
+import { NotificationSettingsPageUI } from "../interfaces/notificationSettings.interface";
 import { AbstractPage } from './abstract.po';
 
 export class NotificationSettingsPage extends AbstractPage {
@@ -11,8 +11,8 @@ export class NotificationSettingsPage extends AbstractPage {
     //     this.click(NotificationSettingsPageUI.VIEW_ALL_PATIENT_BUTTON);
     // }
 
-    // verifyplaceholder() {
-    //     cy.log(`Verify NotificationSettings Panel is displayed`);
-    //     this.shouldVisible(NotificationSettingsPageUI.NotificationSettings_PANEL);
-    // }
+    verifyNotificationSettingsPageDisplayed() {
+        cy.log(`Verify Notification Settings Panel is displayed`);
+        this.shouldVisible(NotificationSettingsPageUI.NOTIFICATION_PAGE_SETTINGS);
+    }
 }
