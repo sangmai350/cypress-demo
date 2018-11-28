@@ -1,4 +1,4 @@
-// import { CoachesPageUI } from "../interfaces/coaches.interface.";
+import { CoachesPageUI } from "../interfaces/coaches.interface.";
 import { AbstractPage } from './abstract.po';
 
 export class CoachesPage extends AbstractPage {
@@ -6,13 +6,21 @@ export class CoachesPage extends AbstractPage {
         super();
     }
 
-    // clickViewAllPatientsButton() {
-    //     cy.log('Click View all patient Button');
-    //     this.click(DashboardPageUI.VIEW_ALL_PATIENT_BUTTON);
-    // }
+    addNewCoach(firstName: string, lastName: string, email: string, phone: string, clinic: string) {
+        cy.log('Create new Coach');
+        this.clickPrimaryLink();
+        this.typeToTextfieldByPlaceholder(firstName, "First Name");
+        this.typeToTextfieldByPlaceholder(lastName, "Last Name");
+        this.typeToTextfieldByPlaceholder(email, "Email");
+        this.typeToTextfieldByPlaceholder(phone, "Phone");
+        this.typeToTextfieldByPlaceholder(clinic, "Search Clinic");
+        this.wait(5);
+        this.click(CoachesPageUI.SELECT_CLINIC);
+        this.clickPrimaryButton();
+    }
 
-    // verifyDashboardPanelDisplayed() {
-    //     cy.log(`Verify Dashboard Panel is displayed`);
-    //     this.shouldVisible(DashboardPageUI.DASHBOARD_PANEL);
-    // }
+    verifyCoachTableDisplayed() {
+        cy.log(`Verify Coach table is displayed`);
+        this.shouldVisible(CoachesPageUI.COACH_TABLE);
+    }
 }

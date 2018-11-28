@@ -15,4 +15,11 @@ export class DashboardPage extends AbstractPage {
         cy.log(`Verify Dashboard Panel is displayed`);
         this.shouldVisible(DashboardPageUI.DASHBOARD_PANEL);
     }
+
+    openProfilePage() {
+        cy.log(`Open Profile page`);
+        this.click(DashboardPageUI.PROFILE_AVATAR);
+        this.click(DashboardPageUI.TOP_RIGHT_DROPDOWN_OPTION, "Profile");
+    }
+
 }

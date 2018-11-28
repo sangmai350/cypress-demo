@@ -1,3 +1,3 @@
 export class ClinicsPageUI {
-    static readonly PLACEHOLDER = 'css=div[class=ccr-title] h2';
+    static readonly CLINIC_TABLE = 'css=app-clinics-table';
 }
