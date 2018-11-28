@@ -76,12 +76,18 @@ export class BasePage extends BaseElement {
     async getText(locator: string, param?: string): Promise<string> {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         const text = await promisify(element.then($el => $el.text()));
-        return text;
+        return text.toString();
     }
 
     async isControlExist(locator: string, param?: string): Promise<boolean> {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
         const lengthOfElement = await promisify(element.then($el => $el.length));
         return lengthOfElement !== 0;
+    }
+
+    async getAttributeElement(locator: string, attributeName: string, param?: string): Promise<string> {
+        const element = param ? this.findElement(locator, param) : this.findElement(locator);
+        const attributeOfElement = await promisify(element.then($el => $el.attr(attributeName) || 'null'));
+        return attributeOfElement.toString();
     }
 }
