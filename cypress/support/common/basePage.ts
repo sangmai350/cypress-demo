@@ -1,4 +1,6 @@
 import { BaseElement } from './baseElements';
+import promisify from 'cypress-promise';
+
 export class BasePage extends BaseElement {
 
     type(locator: string, value: string, param?: string) {
@@ -71,10 +73,9 @@ export class BasePage extends BaseElement {
     wait(s: number) {
         cy.wait(s * 1000);
     }
-    getText(locator: string, param?: string) {
+    async getText(locator: string, param?: string): Promise<string> {
         const element = param ? this.findElement(locator, param) : this.findElement(locator);
-        return element.should(($elemnt) => {
-            return $elemnt;
-        });
+        const text = await promisify(element.then($el => $el.text()));
+        return text;
     }
 }

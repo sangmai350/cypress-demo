@@ -32,11 +32,10 @@ export class LoginPage extends AbstractPage {
         cy.log(`Verify Title is ${title}`);
         cy.title().should('include', title);
     }
-    verifyProfileIsDisplayed(text: string) {
+    async verifyProfileIsDisplayed(text: string) {
         cy.log(`Verify Profile is displayed ${text}`);
         this.shouldHasText(LoginPageUI.PROFILE_BUTTON, text);
-        this.getText(LoginPageUI.PROFILE_BUTTON).then(_text => {
-            cy.log(_text.get(0).innerText);
-        });
+        const returnText = await this.getText(LoginPageUI.PROFILE_BUTTON);
+        cy.log(returnText);
     }
 }
