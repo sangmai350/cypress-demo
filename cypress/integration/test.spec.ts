@@ -35,7 +35,7 @@ const notificationSettings = new NotificationSettingsPage();
 const username = Constant.PROVIDER_EMAIL;
 const password = Constant.PROIVER_PASS;
 
-describe.only("Login Test With Cypress", () => {
+describe("Login Test With Cypress", () => {
   context("Login with valid username and password", () => {
     beforeEach(() => {
       // loginPage.gotoLoginPage();
@@ -87,7 +87,7 @@ describe("Dashboard page Test With Cypress", () => {
   });
 });
 
-describe("Patients page Test With Cypress", () => {
+describe.only("Patients page Test With Cypress", () => {
   context("View Patients page", () => {
     beforeEach(() => {
       cy.viewport("macbook-15");

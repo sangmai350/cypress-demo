@@ -8,6 +8,7 @@ export class DashboardPage extends AbstractPage {
 
     clickViewAllPatientsButton() {
         cy.log('Click View all patient Button');
+        this.scrollIntoElement(DashboardPageUI.VIEW_ALL_PATIENT_BUTTON);
         this.click(DashboardPageUI.VIEW_ALL_PATIENT_BUTTON);
     }
 
