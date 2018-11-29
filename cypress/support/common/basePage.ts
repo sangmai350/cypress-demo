@@ -95,4 +95,9 @@ export class BasePage extends BaseElement {
         const attributeOfElement = await promisify(element.then($el => $el.attr(attributeName) || 'null'));
         return attributeOfElement.toString();
     }
+    async countElement(locator: string, param?: string): Promise<number> {
+        const element = param ? this.findElement(locator, param) : this.findElement(locator);
+        const numberOfElement = await promisify(element.then($el => $el.length));
+        return numberOfElement;
+    }
 }
