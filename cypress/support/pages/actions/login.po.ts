@@ -32,4 +32,20 @@ export class LoginPage extends BasePage {
             cy.log(_text.get(0).innerText);
         });
     }
+    loginBySingleSignOn(username: string, password: string) {
+        const url = 'https://api.coachcaredev.com/2.0/login';
+        const options = {
+            url: url,
+            form: true,
+            body: {
+                email: username,
+                password: password,
+                deviceType: 2,
+                allowedAccountTypes: 2,
+            }
+        };
+        cy.request('POST', options).then((response) => {
+            return response.body.token;
+        });
+    }
 }
