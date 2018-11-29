@@ -80,7 +80,7 @@ describe("Dashboard page Test With Cypress", () => {
   });
 });
 
-describe.only("Patients page Test With Cypress", () => {
+describe("Patients page Test With Cypress", () => {
   context("View Patients page", () => {
     beforeEach(() => {
       cy.viewport("macbook-15");
@@ -287,8 +287,11 @@ describe("View Schedules Test With Cypress", () => {
       viewSchedulesPage.verifyViewSchedulesPanelDisplayed();
     });
 
-    it("Verify user can add a consultation schedule", () => {
-      viewSchedulesPage.verifyViewSchedulesPanelDisplayed();
+    it.only("Verify user can add a consultation schedule", () => {
+      viewSchedulesPage.removeSelectableSchedule();
+      viewSchedulesPage.createNewSchedule("Auto Meeting");
+      viewSchedulesPage.verifyScheduleCreatedSuccessfully();
+      viewSchedulesPage.removeSelectableSchedule();
     });
   });
 });

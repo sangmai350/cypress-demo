@@ -13,6 +13,6 @@ export class SetAvailabilityPage extends AbstractPage {
 
     verifySetAvailabilityPageDisplayed() {
         cy.log(`Verify Notification Panel is displayed`);
-        this.shouldVisible(SetAvailabilityPageUI.NOTIFICATION_PANEL);
+        this.shouldVisible(SetAvailabilityPageUI.SET_SCHEDULE_PANEL);
     }
 }

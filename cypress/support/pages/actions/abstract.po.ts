@@ -53,6 +53,12 @@ export class AbstractPage extends BasePage {
         this.click(AbstractPageUI.PRIMARY_LINK);
     }
 
+    scrollAndClickPrimaryLink() {
+        cy.log(`Click Primary link`);
+        this.scrollIntoElement(AbstractPageUI.PRIMARY_LINK);
+        this.click(AbstractPageUI.PRIMARY_LINK);
+    }
+
     clickPrimaryLinkByName(label: string) {
         cy.log(`Click Primary link ${label}`);
         this.click(AbstractPageUI.PRIMARY_LINK_BY_NAME, label);
@@ -85,6 +91,12 @@ export class AbstractPage extends BasePage {
     }
 
     async verifyFooterLinkByName(name: string, text: string) {
+        cy.log(`Click footer link: "${name}".`);
+        const url = await this.getAttributeElement(AbstractPageUI.FOOTER_LINK_BY_NAME, "href", name);
+        cy.request(url).its('body').should("include", text);
+    }
+
+    async verifyLeftSubMenuLinkByName(name: string, text: string) {
         cy.log(`Click footer link: "${name}".`);
         const url = await this.getAttributeElement(AbstractPageUI.FOOTER_LINK_BY_NAME, "href", name);
         cy.request(url).its('body').should("include", text);
