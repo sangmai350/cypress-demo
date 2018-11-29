@@ -1,15 +1,30 @@
 import { LoginPageUI } from "../interfaces/login.interface";
 import { AbstractPage } from '../actions/abstract.po';
-// import { from } from 'rxjs';
-// import { resolve, reject } from "bluebird";
+import promisify from 'cypress-promise';
+import { Constant } from '../../common/constanst'
 
 export class LoginPage extends AbstractPage {
     constructor() {
         super();
     }
+
+    async login(username: string, password: string) {
+        const body = {
+            email: username,
+            password: password,
+            deviceType: '2',
+            allowedAccountTypes: '2'
+        };
+        const token_id = await promisify(cy.request('POST', Constant.LOGIN_API_URL, body).then(response => response.body.token));
+        cy.setCookie('SELVERAprovider', token_id);
+        cy.setCookie('ccrStatic', 'provider');
+        cy.setCookie('ccrStaticLanguage', 'en');
+        this.gotoURL(Constant.DASHBOARD_URL);
+
+    }
     gotoLoginPage() {
         cy.log('Go to Login Page');
-        this.gotoURL('https://dashboard.coachcaredev.com/');
+        this.gotoURL(Constant.BASE_URL);
     }
     inputUserName(username: string) {
         cy.log('Input The Username');

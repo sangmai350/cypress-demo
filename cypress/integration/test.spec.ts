@@ -35,17 +35,17 @@ const notificationSettings = new NotificationSettingsPage();
 const username = Constant.PROVIDER_EMAIL;
 const password = Constant.PROIVER_PASS;
 
-describe("Login Test With Cypress", () => {
+describe.only("Login Test With Cypress", () => {
   context("Login with valid username and password", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
+      // loginPage.gotoLoginPage();
     });
 
     it("Login Page", () => {
-
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
+      // loginPage.inputUserName(username);
+      // loginPage.inputPassword(password);
+      // loginPage.clickLoginButton();
       loginPage.verifyTitle('Dashboard');
       loginPage.verifyProfileIsDisplayed('Hello Provider T.');
     });
@@ -277,7 +277,7 @@ describe("User Notification Settings Test With Cypress", () => {
   });
 });
 
-describe.only("All footer page Test With Cypress", () => {
+describe("All footer page Test With Cypress", () => {
   context("Checking all footer page", () => {
     beforeEach(() => {
       loginPage.gotoLoginPage();
