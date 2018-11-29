@@ -80,7 +80,7 @@ describe("Dashboard page Test With Cypress", () => {
   });
 });
 
-describe("Patients page Test With Cypress", () => {
+describe.only("Patients page Test With Cypress", () => {
   context("View Patients page", () => {
     beforeEach(() => {
       cy.viewport("macbook-15");
