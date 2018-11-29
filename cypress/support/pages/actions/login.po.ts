@@ -1,7 +1,7 @@
 import { LoginPageUI } from "../interfaces/login.interface";
 import { AbstractPage } from '../actions/abstract.po';
 import promisify from 'cypress-promise';
-import { Constant } from '../../common/constanst'
+import { Constant } from '../../common/constanst';
 
 export class LoginPage extends AbstractPage {
     constructor() {

@@ -13,7 +13,7 @@ import { UserStatisticsPage } from '../support/pages/actions/userStatistics.po';
 import { NotificationPage } from '../support/pages/actions/notifications.po';
 import { NotificationSettingsPage } from '../support/pages/actions/notificationSettings.po';
 // import { SetAvailabilityPage } from '../support/pages/actions/setAvailability.po';
-// import { ViewSchedulesPage } from '../support/pages/actions/viewSchedules.po';
+import { ViewSchedulesPage } from '../support/pages/actions/viewSchedules.po';
 // import { SupportPage } from '../support/pages/actions/support.po';
 
 const loginPage = new LoginPage();
@@ -29,25 +29,21 @@ const userStatistics = new UserStatisticsPage();
 const notificationPage = new NotificationPage();
 const notificationSettings = new NotificationSettingsPage();
 // const setAvailabilityPage = new SetAvailabilityPage();
-// const viewSchedulesPage = new ViewSchedulesPage();
+const viewSchedulesPage = new ViewSchedulesPage();
 // const supportPage = new SupportPage();
 
 const username = Constant.PROVIDER_EMAIL;
 const password = Constant.PROIVER_PASS;
 
-describe.only("Login Test With Cypress", () => {
+describe("Login Test With Cypress", () => {
   context("Login with valid username and password", () => {
     beforeEach(() => {
-      // loginPage.gotoLoginPage();
     });
 
     it("Login Page", () => {
       loginPage.login(username, password);
-      // loginPage.inputUserName(username);
-      // loginPage.inputPassword(password);
-      // loginPage.clickLoginButton();
       loginPage.verifyTitle('Dashboard');
-      loginPage.verifyProfileIsDisplayed('Hello Provider T.');
+      loginPage.verifyProfileIsDisplayed('Hello');
     });
   });
 });
@@ -70,10 +66,7 @@ describe("Forgot password Test With Cypress", () => {
 describe("Dashboard page Test With Cypress", () => {
   context("View dashboard page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
     });
 
     it("Verify dashboard is loaded", () => {
@@ -91,10 +84,7 @@ describe("Patients page Test With Cypress", () => {
   context("View Patients page", () => {
     beforeEach(() => {
       cy.viewport("macbook-15");
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.clickViewAllPatientsButton();
     });
 
@@ -124,10 +114,7 @@ describe("Patients page Test With Cypress", () => {
 describe("Clinics page Test With Cypress", () => {
   context("Checking Clinics page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Accounts");
       dashboardPage.openLeftNavSubMenu("Clinics");
     });
@@ -141,10 +128,7 @@ describe("Clinics page Test With Cypress", () => {
 describe("Coaches page Test With Cypress", () => {
   context("Checking Coaches page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Accounts");
       dashboardPage.openLeftNavSubMenu("Coaches");
     });
@@ -163,10 +147,7 @@ describe("Coaches page Test With Cypress", () => {
 describe("Message page Test With Cypress", () => {
   context("Checking Messages page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Messages");
     });
 
@@ -185,10 +166,7 @@ describe("Message page Test With Cypress", () => {
 describe("Profile page Test With Cypress", () => {
   context("Checking Profile page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openProfilePage();
     });
 
@@ -207,10 +185,7 @@ describe("Profile page Test With Cypress", () => {
 describe("Overview page Test With Cypress", () => {
   context("Checking Overview page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Reports");
       dashboardPage.openLeftNavSubMenu("Overview");
     });
@@ -229,10 +204,7 @@ describe("Overview page Test With Cypress", () => {
 describe("User statistics page Test With Cypress", () => {
   context("Checking User statistics page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Reports");
       dashboardPage.openLeftNavSubMenu("User Statistics");
     });
@@ -246,10 +218,7 @@ describe("User statistics page Test With Cypress", () => {
 describe("User Notifications page Test With Cypress", () => {
   context("Checking Notifications page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Alerts");
       dashboardPage.openLeftNavSubMenu("Notifications");
     });
@@ -263,10 +232,7 @@ describe("User Notifications page Test With Cypress", () => {
 describe("User Notification Settings Test With Cypress", () => {
   context("Checking Notification Settings page", () => {
     beforeEach(() => {
-      loginPage.gotoLoginPage();
-      loginPage.inputUserName(username);
-      loginPage.inputPassword(password);
-      loginPage.clickLoginButton();
+      loginPage.login(username, password);
       dashboardPage.openLeftNavMenu("Alerts");
       dashboardPage.openLeftNavSubMenu("Settings");
     });
@@ -305,6 +271,24 @@ describe("All footer page Test With Cypress", () => {
 
     it("Verify GDPR DPA page is loaded", () => {
       loginPage.verifyFooterLinkByName("GDPR DPA", "CoachCare GDPR Data Protection Addendum");
+    });
+  });
+});
+
+describe("View Schedules Test With Cypress", () => {
+  context("Checking View Schedules page", () => {
+    beforeEach(() => {
+      loginPage.login(username, password);
+      dashboardPage.openLeftNavMenu("Schedule");
+      dashboardPage.openLeftNavSubMenu("View Schedule");
+    });
+
+    it("Verify View Schedules page is loaded", () => {
+      viewSchedulesPage.verifyViewSchedulesPanelDisplayed();
+    });
+
+    it("Verify user can add a consultation schedule", () => {
+      viewSchedulesPage.verifyViewSchedulesPanelDisplayed();
     });
   });
 });
