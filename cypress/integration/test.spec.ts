@@ -12,8 +12,9 @@ import { OverviewPage } from '../support/pages/actions/overview.po';
 import { UserStatisticsPage } from '../support/pages/actions/userStatistics.po';
 import { NotificationPage } from '../support/pages/actions/notifications.po';
 import { NotificationSettingsPage } from '../support/pages/actions/notificationSettings.po';
-// import { SetAvailabilityPage } from '../support/pages/actions/setAvailability.po';
+import { SetAvailabilityPage } from '../support/pages/actions/setAvailability.po';
 import { ViewSchedulesPage } from '../support/pages/actions/viewSchedules.po';
+import { DigitalLibraryPage } from '../support/pages/actions/digitalLibrary.po';
 // import { SupportPage } from '../support/pages/actions/support.po';
 
 const loginPage = new LoginPage();
@@ -28,8 +29,9 @@ const overviewPage = new OverviewPage();
 const userStatistics = new UserStatisticsPage();
 const notificationPage = new NotificationPage();
 const notificationSettings = new NotificationSettingsPage();
-// const setAvailabilityPage = new SetAvailabilityPage();
+const setAvailabilityPage = new SetAvailabilityPage();
 const viewSchedulesPage = new ViewSchedulesPage();
+const digitalLibraryPage = new DigitalLibraryPage();
 // const supportPage = new SupportPage();
 
 const username = Constant.PROVIDER_EMAIL;
@@ -287,11 +289,49 @@ describe("View Schedules Test With Cypress", () => {
       viewSchedulesPage.verifyViewSchedulesPanelDisplayed();
     });
 
-    it.only("Verify user can add a consultation schedule", () => {
+    it("Verify user can add a consultation schedule", () => {
       viewSchedulesPage.removeSelectableSchedule();
       viewSchedulesPage.createNewSchedule("Auto Meeting");
       viewSchedulesPage.verifyScheduleCreatedSuccessfully();
       viewSchedulesPage.removeSelectableSchedule();
+    });
+  });
+});
+
+describe("Set Availibility Test With Cypress", () => {
+  context("Checking Set Availibility page", () => {
+    beforeEach(() => {
+      loginPage.login(username, password);
+      dashboardPage.openLeftNavMenu("Schedule");
+      dashboardPage.openLeftNavSubMenu("Set Availability");
+    });
+
+    it("Verify Set Availibility page is loaded", () => {
+      setAvailabilityPage.verifySetAvailabilityPageDisplayed();
+    });
+
+    it("Verify user can add a recurring schedule", () => {
+      setAvailabilityPage.removeAllSchedule();
+      setAvailabilityPage.addRecurringSchedule();
+      setAvailabilityPage.verifyNewAvailabilityDisplays();
+    });
+  });
+});
+
+describe("Digital Librrary test With Cypress", () => {
+  context("Checking Digital Librrary page", () => {
+    beforeEach(() => {
+      loginPage.login(username, password);
+      dashboardPage.openLeftNavMenu("Digital Library");
+    });
+
+    it("Verify Digital Librrary page is loaded", () => {
+      digitalLibraryPage.verifyDigitalLibraryPageDisplayed();
+    });
+
+    it("Verify user can add a recurring schedule", () => {
+      digitalLibraryPage.createNewForm("Auto Form");
+      digitalLibraryPage.verifyNewFormCreated();
     });
   });
 });

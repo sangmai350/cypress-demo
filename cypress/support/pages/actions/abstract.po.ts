@@ -85,6 +85,11 @@ export class AbstractPage extends BasePage {
         this.click(AbstractPageUI.BUTTON_BY_LABEL, label);
     }
 
+    verifyButtonDisplaysByLabel(label: string) {
+        cy.log(`Click Button by with label: ${label}`);
+        this.shouldVisible(AbstractPageUI.BUTTON_BY_LABEL, true, label);
+    }
+
     verifyNotificationSpanDisplayed(text: string) {
         cy.log(`Notification "${text}" should be displayed.`);
         this.shouldVisible(AbstractPageUI.NOTIFICATION_SPAN, true, text);
@@ -100,5 +105,10 @@ export class AbstractPage extends BasePage {
         cy.log(`Click footer link: "${name}".`);
         const url = await this.getAttributeElement(AbstractPageUI.FOOTER_LINK_BY_NAME, "href", name);
         cy.request(url).its('body').should("include", text);
+    }
+
+    clickRadioButtonByName(label: string) {
+        cy.log(`Click Radio button with label: ${label}`);
+        this.click(AbstractPageUI.RADIO_BUTTON_BY_TEXT, label);
     }
 }

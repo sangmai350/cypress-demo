@@ -14,4 +14,5 @@ export class AbstractPageUI {
     static readonly PRIMARY_LINK_BY_NAME = 'cssText=a[color="primary"] span span Text=%s';
     static readonly PRIMARY_LINK_BY_NAME_ONE_SPAN = 'cssText=a[color="primary"] span Text=%s';
     static readonly FOOTER_LINK_BY_NAME = 'cssText=a[rel="noopener noreferrer"] Text=%s';
+    static readonly RADIO_BUTTON_BY_TEXT = 'cssText=.mat-radio-label-content Text=%s';
 }

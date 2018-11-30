@@ -6,13 +6,25 @@ export class SetAvailabilityPage extends AbstractPage {
         super();
     }
 
-    // placeholder() {
-    //     cy.log('Click View all patient Button');
-    //     this.click(NotificationPageUI.VIEW_ALL_PATIENT_BUTTON);
-    // }
+    addRecurringSchedule() {
+        cy.log(`Add a recurring schedule`);
+        this.click(SetAvailabilityPageUI.ADD_NEW_RECURRING);
+        this.clickPrimaryButton();
+    }
+
+    removeAllSchedule() {
+        cy.log(`Remove all schedules`);
+        this.click(SetAvailabilityPageUI.RESET_ALL_BUTTON);
+        this.click(SetAvailabilityPageUI.CONFIRM_DELETE_RECURRING);
+    }
 
     verifySetAvailabilityPageDisplayed() {
         cy.log(`Verify Notification Panel is displayed`);
         this.shouldVisible(SetAvailabilityPageUI.SET_SCHEDULE_PANEL);
+    }
+
+    verifyNewAvailabilityDisplays() {
+        cy.log(`Verify New Availability is displayed`);
+        this.verifyButtonDisplaysByLabel("Delete Availability");
     }
 }
