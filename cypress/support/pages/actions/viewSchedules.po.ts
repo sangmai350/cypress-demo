@@ -39,6 +39,10 @@ export class ViewSchedulesPage extends AbstractPage {
     createNewSchedule(title: string) {
         this.wait(3);
         this.typeToTextfieldByPlaceholder(title, "Title");
+        this.click(ViewSchedulesPageUI.SELECT_TIME);
+        this.clickButtonByLabel("Change to minute view");
+        this.click(ViewSchedulesPageUI.SELECT_MINUS, "55");
+        this.clickButtonByLabel("Choose the current date");
         this.scrollAndClickPrimaryLink();
     }
 
