@@ -19,6 +19,8 @@ export class LoginPage extends AbstractPage {
         cy.setCookie('SELVERAprovider', token_id);
         cy.setCookie('ccrStatic', 'provider');
         cy.setCookie('ccrStaticLanguage', 'en');
+        cy.setCookie('io', 'sipc0K05xG-pqQh2AAEA');
+        cy.setCookie('__stripe_mid', '544fa3b3-9ec7-4033-9e87-14c4423f01bf');
         this.gotoURL(Constant.DASHBOARD_URL);
 
     }
